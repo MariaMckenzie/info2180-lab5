@@ -26,7 +26,6 @@ window.addEventListener("load", function() {
         fetch("world.php?country=" + txt)
             .then(response => {
                 if (response.ok) {
-                  //console.log(typeof response.text());//['name']);
                   return response.text();
                 } else {
                   return Promise.reject("Error!");

@@ -31,8 +31,17 @@ if ($c == ""){
 
 
 ?>
-<ul>
+<table >
+  <th style="border-bottom: 1px solid black;">Name</th>
+  <th style="border-bottom: 1px solid black;">Continent</th>
+  <th style="border-bottom: 1px solid black;">Independence Year</th>
+  <th style="border-bottom: 1px solid black;"> Head of State</th>
 <?php foreach ($results as $row): ?>
-  <li><?= $row['name'] ; ?></li>
+  <tr>
+    <td style="border-bottom: 1px solid black;"><?= $row['name'] ; ?></td>
+    <td style="border-bottom: 1px solid black;"><?= $row['continent'] ; ?></td>
+    <td style="border-bottom: 1px solid black;"><?= $row['independence_year'] ; ?></td>
+    <td style="border-bottom: 1px solid black;"><?= $row['head_of_state'] ; ?></td>
+  </tr>
 <?php endforeach; ?>
-</ul>
+</table>
