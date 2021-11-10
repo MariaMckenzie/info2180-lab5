@@ -7,14 +7,13 @@
 
 //LOAD THE DOCUMENT
 window.addEventListener("load", function() {
-    let btn = document.querySelector("#lookup");
+  let btn = document.querySelector("#lookup");
+  let btn2 = document.querySelector("#lookup_city");
 
     console.log(btn);
 
     btn.addEventListener("click", function(e) {
         e.preventDefault();
-        let res1 = "<ul>";
-        let res2 = "";        
         let wrd = document.querySelector("#country").value;
         let txt = wrd.replace( /(<([^>]+)>)/ig, "");
 
@@ -37,6 +36,31 @@ window.addEventListener("load", function() {
             })
             .catch(error => console.log(error))
     });
+
+    btn2.addEventListener("click", function(e) {
+      e.preventDefault();
+      let wrd = document.querySelector("#country").value;
+      let txt = wrd.replace( /(<([^>]+)>)/ig, "");
+
+      //capitalises the first letter of each word
+      if (txt.length > 0) {
+        txt = fixInput(txt);
+      }
+
+      fetch("world.php?country=" + txt + "&context=cities")
+          .then(response => {
+              if (response.ok) {
+                return response.text();
+              } else {
+                return Promise.reject("Error!");
+              }
+          })
+          .then(data => {
+              let result = document.querySelector("#result");
+              result.innerHTML = data;
+          })
+          .catch(error => console.log(error))
+  });
 });
 
 //function to capitalise the words - for search purposes

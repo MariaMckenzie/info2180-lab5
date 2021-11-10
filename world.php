@@ -16,32 +16,57 @@ try {
 
 $req = $_GET["country"];
 
-$stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$req%'");
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//echo $req;
-//echo $results;
-
-/*
-if ($c == ""){
-  $stmt = $conn->query("SELECT * FROM countries");
+if (!isset($_GET["context"])) {
+  $stmt = $conn->prepare("SELECT * FROM countries WHERE name LIKE '%$req%'");
+  $stmt->execute();
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  echo $results
-}*/
-
+}
+else {
+  $stmt = $conn->prepare("SELECT cities.name, cities.district, cities.population FROM cities JOIN countries ON cities.country_code=countries.code WHERE countries.name LIKE '%$req%';");
+  $stmt->execute();
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 ?>
-<table >
-  <th style="border-bottom: 1px solid black;">Name</th>
-  <th style="border-bottom: 1px solid black;">Continent</th>
-  <th style="border-bottom: 1px solid black;">Independence Year</th>
-  <th style="border-bottom: 1px solid black;"> Head of State</th>
-<?php foreach ($results as $row): ?>
-  <tr>
-    <td style="border-bottom: 1px solid black;"><?= $row['name'] ; ?></td>
-    <td style="border-bottom: 1px solid black;"><?= $row['continent'] ; ?></td>
-    <td style="border-bottom: 1px solid black;"><?= $row['independence_year'] ; ?></td>
-    <td style="border-bottom: 1px solid black;"><?= $row['head_of_state'] ; ?></td>
-  </tr>
-<?php endforeach; ?>
-</table>
+
+<!-- displaying the table for countries -->
+<?php if (!isset($_GET["context"]))  { ?>
+  <table id="country_table">
+    <thead>
+      <th>Name</th>
+      <th>Continent</th>
+      <th>Independence Year</th>
+      <th> Head of State</th>
+    </thead>
+    <tbody>
+      <?php foreach ($results as $row): ?>
+      <tr>
+        <td><?= $row['name'] ; ?></td>
+        <td><?= $row['continent'] ; ?></td>
+        <td><?= $row['independence_year'] ; ?></td>
+        <td><?= $row['head_of_state'] ; ?></td>
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+  <?php } ?>
+
+  <!-- displaying the table for cities -->
+  <?php if (isset($_GET["context"]))  { ?>
+  <table id="city_table">
+    <thead>
+      <th>Name</th>
+      <th>District</th>
+      <th>Population</th>
+    </thead>
+    <tbody>
+      <?php foreach ($results as $row): ?>
+      <tr>
+        <td><?= $row['name'] ; ?></td>
+        <td><?= $row['district'] ; ?></td>
+        <td><?= $row['population'] ; ?></td>
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+  <?php } ?>
