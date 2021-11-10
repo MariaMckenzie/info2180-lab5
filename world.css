@@ -1,5 +1,74 @@
 /* Add your own styles */
 
-#result {
-    padding-top: 25px;
+header{    
+  display: flex;  
+  background-color: #F2D7EE;
 }
+
+h1 {
+    color: #0E103D;
+    padding-top: 40px;
+    padding-left: 30px;
+    margin-right: auto;
+}
+
+img {
+    height: 200px;
+    margin-left: auto;
+}
+
+body {
+    background-color: #D3BCC0;    
+    font-family: Verdana;
+}
+
+main {
+    padding-top: 30px;
+}
+
+#controls {    
+    text-align: center;
+}
+
+#country {
+    width: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    border: solid 2px #0E103D;
+    color: #0E103D;
+}
+
+label {
+    font-weight: bold;
+    color: #EEF5DB;
+    visibility: hidden;
+}
+
+#result {
+    padding-top: 30px;
+}
+
+button {
+    width: 130px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+#lookup {
+    border: solid 2px #A5668B;
+    background-color: #A5668B;
+    color: #F2D7EE;
+}
+
+#lookup_city {
+    border: solid 2px #69306D;
+    background-color: #69306D;
+    color: #F2D7EE;
+}
+

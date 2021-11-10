@@ -29,13 +29,47 @@ else {
 
 ?>
 
+<style>
+table {
+  font-family: Verdana;
+  color: #0E103D;
+  border-collapse: collapse;
+  border: 2px solid #0E103D;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th {
+  border: 2px solid #0E103D;
+  padding: 10px;
+  text-align: left;
+}
+
+#th1 { 
+  background-color: #A5668B;
+  color: #F2D7EE;
+}
+
+#th2 { 
+  background-color: #69306D;
+  color: #F2D7EE;
+}
+
+td {
+  color: #0E103D;
+  border-bottom: 1px solid #0E103D;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+</style>
+
 <!-- displaying the table for countries -->
 <?php if (!isset($_GET["context"]))  { ?>
   <table id="country_table">
-    <thead>
-      <th>Name</th>
+    <thead id="th1">
+      <th style="width: 250px;">Name</th>
       <th>Continent</th>
-      <th>Independence Year</th>
+      <th  style="text-align: center;">Independence Year</th>
       <th> Head of State</th>
     </thead>
     <tbody>
@@ -43,7 +77,7 @@ else {
       <tr>
         <td><?= $row['name'] ; ?></td>
         <td><?= $row['continent'] ; ?></td>
-        <td><?= $row['independence_year'] ; ?></td>
+        <td style="text-align: center;"><?= $row['independence_year'] ; ?></td>
         <td><?= $row['head_of_state'] ; ?></td>
       </tr>
       <?php endforeach; ?>
@@ -54,17 +88,17 @@ else {
   <!-- displaying the table for cities -->
   <?php if (isset($_GET["context"]))  { ?>
   <table id="city_table">
-    <thead>
-      <th>Name</th>
+    <thead id="th2">
+      <th style="width: 200px;">Name</th>
       <th>District</th>
-      <th>Population</th>
+      <th style="text-align: center">Population</th>
     </thead>
     <tbody>
       <?php foreach ($results as $row): ?>
       <tr>
         <td><?= $row['name'] ; ?></td>
         <td><?= $row['district'] ; ?></td>
-        <td><?= $row['population'] ; ?></td>
+        <td style="text-align: center;"><?= $row['population'] ; ?></td>
       </tr>
       <?php endforeach; ?>
     </tbody>
